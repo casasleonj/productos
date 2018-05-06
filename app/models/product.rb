@@ -10,7 +10,7 @@
 #
 
 class Product < ApplicationRecord
-	has_and_belongs_to_many :category, dependent: :destroy
+	has_and_belongs_to_many :categories
 
 	validates :name, :price, :category_ids, presence: true
 end
