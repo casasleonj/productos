@@ -11,8 +11,14 @@
 				</div>
 				<div class="row">
           <div class="col-sm-12 col-xs-12">
-              <div class="form-inline">
-                <%=f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+              <div class="form-group">
+               <%= f.collection_check_boxes :category_ids, Category.all, :id, :name  do |c| %>
+                <div class="checkbox">
+   							 <%= c.label do %>
+     							 <%= c.check_box %> <%= c.object.name %>
+   									 <% end %>
+  										</div>
+											<% end %>
               </div>
           </div>
       </div>

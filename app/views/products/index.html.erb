@@ -5,28 +5,27 @@
 			<div class="text-right"><%=  link_to "Nuevo Producto", new_product_path, class: "btn btn-primary" %></div>
 				<div class="col-sm-12">
 					<table class="table">
-						<thead>
-							<tr>
-								<th scope="col">Nombre</th>
-								<th scope="col">Precio</th>
-								<th scope="col">Categorias</th>
-							</tr>
-						</thead>
-						<tbody>
-							<%@products.each do |product|%>
-						  <tbody>
-						    <tr>
-						      <td><%=product.name%></td>
-						      <td><%=product.price%></td>
-						  	<% product.categories.each do |category|%>
-	      					<td><%=category.name%></td>
-						  <%end%>
-					  			<td><%= link_to "<span class='glyphicon glyphicon-pencil'></span>".html_safe, edit_product_path(product.id)%></td>
-					 				 <td><%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, product, method: :delete, data: { confirm: "¿Estás seguro de eliminar este Producto?"}%></td>
-					    	</tr>
-					  	</tbody>
-					 			 <%end%>
-							</tbody>
+					  <thead>
+					    <tr>
+					      <th>Nombre</th>
+					      <th>Precio</th>
+					      <th>Categorías</th>
+					      <th></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <% @products.each do |product| %>
+					      <tr>
+					        <td><%= product.name %></td>
+					        <td><%= number_to_currency(product.price, precision: 0) %></td>
+					        <td><%= product.categories.pluck(:name).join(", ") %></td>
+					        <td>
+											<%= link_to "<span class='glyphicon glyphicon-pencil'></span>".html_safe, edit_product_path(product.id)%>
+					 				    <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, product, method: :delete, data: { confirm: "¿Estás seguro de eliminar este Producto?"}%>
+					        </td>
+					      </tr>
+					    <% end %>
+					  </tbody>
 					</table>
 				</div>
 			</div>
